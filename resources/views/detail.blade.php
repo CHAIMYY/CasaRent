@@ -65,6 +65,8 @@
           <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
         </div>
       </div> --}}
+      @foreach ($annonces as $annonce)
+    
 
    
       <!-- This is an example component -->
@@ -122,10 +124,10 @@
         <!-- Options -->
         <div class="mt-4 lg:row-span-3 lg:mt-0">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl tracking-tight text-gray-900">$192</p>
+          <p class="text-3xl tracking-tight text-gray-900">$192 night</p>
   
           <!-- Reviews -->
-          <div class="mt-6">
+          {{-- <div class="mt-6">
             <h3 class="sr-only">Reviews</h3>
             <div class="flex items-center">
               <div class="flex items-center">
@@ -150,13 +152,13 @@
               <a href="#" class="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">117 reviews</a>
             </div>
           </div>
-  
+   --}}
           <form class="mt-10">
             <!-- Colors -->
             <div>
-              <h3 class="text-sm font-medium text-gray-900">Color</h3>
+              <h2 class="text-xl font-medium text-gray-900 pb-5">Apartement</h2>
   
-              <fieldset class="mt-4">
+              {{-- <fieldset class="mt-4">
                 <legend class="sr-only">Choose a color</legend>
                 <div class="flex items-center space-x-3">
                   <!--
@@ -187,11 +189,11 @@
                     <span aria-hidden="true" class="h-8 w-8 bg-gray-900 rounded-full border border-black border-opacity-10"></span>
                   </label>
                 </div>
-              </fieldset>
+              </fieldset> --}}
             </div>
   
             <!-- Sizes -->
-            <div class="mt-10">
+            {{-- <div class="mt-10">
               <div class="flex items-center justify-between">
                 <h3 class="text-sm font-medium text-gray-900">Size</h3>
                 <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
@@ -282,9 +284,14 @@
                   </label>
                 </div>
               </fieldset>
-            </div>
+            </div> --}}
+        <div class="grid grid-cols-1 gap-4">
+            <h3 class="text-sm font-medium text-gray-600">2 Bathrooms</h3>
+            <h3 class="text-sm font-medium text-gray-600">1 Kitchen</h3>
+            <h3 class="text-sm font-medium text-gray-600">3 Bedrooms</h3>
+        </div>
   
-            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+            <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Contact hosted</button>
           </form>
         </div>
   
@@ -323,7 +330,7 @@
     </div>
   </div>
 
-
+@endforeach
 
 
 

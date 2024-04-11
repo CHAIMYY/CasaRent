@@ -1,5 +1,6 @@
 @extends('layout')
-@include('partials.navbar')
+<div> @include('partials.navbar') </div>
+
 
 <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
     <img src="{{ asset('images/pexels-francesco-ungaro-1878715.jpg') }}" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
