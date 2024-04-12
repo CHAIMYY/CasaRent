@@ -65,7 +65,7 @@
           <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
         </div>
       </div> --}}
-      @foreach ($annonces as $annonce)
+      {{-- @foreach ($annonces as $annonce) --}}
     
 
    
@@ -330,7 +330,7 @@
     </div>
   </div>
 
-@endforeach
+{{-- @endforeach --}}
 
 
 

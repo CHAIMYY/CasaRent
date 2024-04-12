@@ -21,18 +21,29 @@ class AuthController extends Controller
     public function loginPost(Request $request){
 
         $request->validate([
-           'email'=>'required',
-           'password'=>'required',
-
+            'email'=>'required',
+            'password'=>'required',
         ]);
-
+    
         $credentials = $request->only('email', 'password');
-        
+    
         if(Auth::attempt($credentials)){
-            return redirect()->intended('home');
+          
+            $user = Auth::user();
+            if ($user->role == 'admin') {
+                return redirect()->intended(route('admin.dashboard'));
+            } elseif ($user->role == 'advertiser') {
+                return redirect()->intended(route('advertiser.dashboard'));
+            } else {
+                return redirect()->intended(route('home'));
+            }
         }
-        return redirect(route('login'))->with("error","login details are not valid");
+        
+        return redirect(route('login'))->with("error","Login details are not valid");
     }
+
+   
+    
 
     public function registerPost(Request $request){
 
@@ -40,19 +51,28 @@ class AuthController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:users',
             'password'=>'required',
- 
-         ]);
-
-         $data['name'] = $request->name;
-         $data['email'] = $request->email;
-         $data['password'] = Hash::make($request->password);
-         $user = User::create($data);
-         if(!$user){
+            'role'=>'required|in:user,advertiser', 
+        ]);
+    
+        $data['name'] = $request->name;
+        $data['email'] = $request->email;
+        $data['password'] = Hash::make($request->password);
+        $data['role'] = $request->role;
+    
+        $user = User::create($data);
+    
+        if(!$user){
             return redirect(route('register'))->with("error","Registration failed, try again");
-         }
-
-            return redirect(route('login'))->with("success","Registration success, login to access the app");
-  }
+        }
+    
+        
+        if ($request->role == 'advertiser') {
+            return redirect(route('advertiser.dashboard'))->with("success","Registration success, login to access the app");
+        } else {
+            return redirect(route('home'))->with("success","Registration success, login to access the app");
+        }
+    }
+    
 
         // public function logout(){
             

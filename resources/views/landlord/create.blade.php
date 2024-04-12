@@ -1,5 +1,4 @@
-@extends('layout')
-<div> @include('partials.navbar') </div>
+@include('partials.sidebar')
 
 
 <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">

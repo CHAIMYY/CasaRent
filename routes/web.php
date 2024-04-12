@@ -30,9 +30,9 @@ Route::get('/statistique', function () {
 Route::get('/landing', function () {
     return view('landing');
 })->name('landing');
-Route::get('/home', function () {
-    return view('home');
-})->name('home');
+// Route::get('/home', function () {
+//     return view('home');
+// })->name('home');
 Route::get('/details', function () {
     return view('detail');
 })->name('details');
@@ -56,9 +56,9 @@ Route::put('/Categorie', [CategoryController::class, 'update'])->name('updateCat
 
 // Route::get('/annonces', [AnnonceController::class, 'show'])->name('show.annonce');
 
-Route::get('/home', [AnnonceController::class, 'viewClient'])->name('allAnnonces');
+Route::get('/home', [AnnonceController::class, 'viewClient'])->name('home');
 Route::post('/annonce/search', [AnnonceController::class, 'viewClient'])->name('events.search');
-Route::get('/annonceDetails/{id}', [AnnonceController::class, 'showDetails'])->name('annonceDetails');
+// Route::get('/annonceDetails/{id}', [AnnonceController::class, 'showDetails'])->name('details');
 //admin part
 Route::get('/Users', [UserController::class, 'viewUsers'])->name('users');
 Route::get('/users/search', [UserController::class, 'searchUsers'])->name('users.search');

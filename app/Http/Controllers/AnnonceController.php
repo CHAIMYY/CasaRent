@@ -48,7 +48,7 @@ class AnnonceController extends Controller
 
     public function showDetails($id)
     {
-        $annonce = Annonce::findOrFail($id);
+        $annonces = Annonce::findOrFail($id);
 
         return view('detail', compact('annonces'));
     }
