@@ -31,9 +31,9 @@ class AuthController extends Controller
           
             $user = Auth::user();
             if ($user->role == 'admin') {
-                return redirect()->intended(route('admin.dashboard'));
+                return redirect()->intended(route('users'));
             } elseif ($user->role == 'advertiser') {
-                return redirect()->intended(route('advertiser.dashboard'));
+                return redirect()->intended(route('landlord.dashboard'));
             } else {
                 return redirect()->intended(route('home'));
             }
@@ -67,7 +67,7 @@ class AuthController extends Controller
     
         
         if ($request->role == 'advertiser') {
-            return redirect(route('advertiser.dashboard'))->with("success","Registration success, login to access the app");
+            return redirect(route('landlord.dashboard'))->with("success","Registration success, login to access the app");
         } else {
             return redirect(route('home'))->with("success","Registration success, login to access the app");
         }

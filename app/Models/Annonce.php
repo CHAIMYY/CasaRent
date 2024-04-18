@@ -12,12 +12,11 @@ class Annonce extends Model
 
     protected $fillable = [
         'id',
-        'titre',
+        'title',
         'description',
         'location',
-        'places',
-        'mode',
-        'statut',
+        'image',
+        'price',
         'categorie_id',
         'user_id',
     ];
@@ -26,4 +25,9 @@ class Annonce extends Model
 {
     return $this->belongsTo(Category::class);
 }
+public function user()
+{
+    return $this->belongsTo(User::class);
+}
+
 }

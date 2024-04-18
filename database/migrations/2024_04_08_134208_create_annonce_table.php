@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('image');
             $table->string('description');
             $table->string('location');
-            $table->string('type');
             $table->decimal('price');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();

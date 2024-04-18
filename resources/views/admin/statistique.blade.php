@@ -1,8 +1,8 @@
 @include('partials.sidebar')
+<body class="bg-purple-100">
+{{-- 
 
-
-
-<div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+<div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ml-72 mr-20">
     <div class="sm:hidden">
         <label for="tabs" class="sr-only">Select tab</label>
         <select id="tabs" class="bg-gray-50 border-0 border-b border-gray-200 text-gray-900 text-sm rounded-t-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -134,4 +134,48 @@
         </div>
     </div>
 </div>
+ --}}
 
+<div class="grid grid-cols-3 gap-4 m-32">
+
+ <div class="container mx-auto">
+    <div class="w-72 bg-white max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+      <div class="h-20 bg-purple-900 flex items-center justify-between">
+        <p class="mr-0 text-white text-lg pl-5">Advertisers</p>
+      </div>
+      <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
+        <p>TOTAL</p>
+      </div>
+      <p class="py-4 text-3xl ml-5">{{$advertisersCount}}</p>
+      <!-- <hr > -->
+    </div>
+  </div>
+
+  <div class="container mx-auto">
+    <div class="w-72 bg-white max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+      <div class="h-20 bg-purple-900 flex items-center justify-between">
+        <p class="mr-0 text-white text-lg pl-5">Users</p>
+      </div>
+      <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
+        <p>TOTAL</p>
+      </div>
+      <p class="py-4 text-3xl ml-5">{{$usersCount}}</p>
+      <!-- <hr > -->
+    </div>
+  </div>
+
+  <div class="container mx-auto">
+    <div class="w-72 bg-white max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+      <div class="h-20 bg-purple-900 flex items-center justify-between">
+        <p class="mr-0 text-white text-lg pl-5">Advertisements</p>
+      </div>
+      <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
+        <p>TOTAL</p>
+      </div>
+      <p class="py-4 text-3xl ml-5">{{$totalAnnonce}}</p>
+      <!-- <hr > -->
+    </div>
+  </div>
+
+</div>
+</body>

@@ -65,8 +65,7 @@
           <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-featured-product-shot.jpg" alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
         </div>
       </div> --}}
-      {{-- @foreach ($annonces as $annonce) --}}
-    
+
 
    
       <!-- This is an example component -->
@@ -113,7 +112,8 @@
 	
     <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 </div>
-    
+@foreach ($annonce as $item)
+
   
       <!-- Product info -->
       <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
@@ -124,7 +124,7 @@
         <!-- Options -->
         <div class="mt-4 lg:row-span-3 lg:mt-0">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl tracking-tight text-gray-900">$192 night</p>
+          <p class="text-3xl tracking-tight text-gray-900">{{ $item->price }}night</p>
   
           <!-- Reviews -->
           {{-- <div class="mt-6">
@@ -156,7 +156,7 @@
           <form class="mt-10">
             <!-- Colors -->
             <div>
-              <h2 class="text-xl font-medium text-gray-900 pb-5">Apartement</h2>
+              <h2 class="text-xl font-medium text-gray-900 pb-5">{{$item->title}}</h2>
   
               {{-- <fieldset class="mt-4">
                 <legend class="sr-only">Choose a color</legend>
@@ -290,7 +290,7 @@
             <h3 class="text-sm font-medium text-gray-600">1 Kitchen</h3>
             <h3 class="text-sm font-medium text-gray-600">3 Bedrooms</h3>
         </div>
-  
+        
             <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Contact hosted</button>
           </form>
         </div>
@@ -301,7 +301,7 @@
             <h3 class="sr-only">Description</h3>
   
             <div class="space-y-6">
-              <p class="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+              <p class="text-base text-gray-900">{{$item->description}}/p>
             </div>
           </div>
   
@@ -330,7 +330,7 @@
     </div>
   </div>
 
-{{-- @endforeach --}}
+@endforeach
 
 
 

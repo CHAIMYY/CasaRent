@@ -48,4 +48,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function annonces()
+    {
+        return $this->hasMany(Annonce::class);
+    }
+
+    public function annonce()
+{
+    return $this->belongsToMany(Annonce::class);
+}
+
 }
