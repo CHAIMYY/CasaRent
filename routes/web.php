@@ -84,7 +84,7 @@ Route::get('/annonces', [UserController::class, 'stats'])->name('stats');
 
 // Route::middleware('auth', 'advertiser')->group(function () {
     Route::get('/dashboard', [AnnonceController::class, 'viewlandlord'])->name('landlord.dashboard');
-    Route::post('/home', [AnnonceController::class, 'create'])->name('addAnnonce');
+    // Route::post('/create', [AnnonceController::class, 'create'])->name('addAnnonce');
     
 // });
 

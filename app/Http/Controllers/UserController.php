@@ -27,7 +27,8 @@ class UserController extends Controller
     }
 
 
-    public function stats() {
+    public function stats() 
+    {
         $totalcategories = Category::count();
         $totalannonces = Annonce::count();
         $totalusers = User::count();
@@ -97,10 +98,11 @@ class UserController extends Controller
     {
         $usersCount = User::where('role', 'user')->count();
         $advertisersCount = User::where('role', 'advertiser')->count();
+        $totalcategories = Category::count();
        
         $totalAnnonce = Annonce::count();
        
-        return view('admin.statistique', compact('usersCount','advertisersCount', 'totalAnnonce'));
+        return view('admin.statistique', compact('usersCount','advertisersCount', 'totalAnnonce','totalcategories'));
     }
 }
 

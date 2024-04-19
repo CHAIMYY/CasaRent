@@ -1,7 +1,7 @@
 @include('partials.sidebar')
 
 
-<div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+{{-- <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
     <img src="{{ asset('images/pexels-francesco-ungaro-1878715.jpg') }}" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
     <div class="hidden sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:transform-gpu sm:blur-3xl" aria-hidden="true">
       <div class="aspect-[1097/845] w-[68.5625rem] bg-gradient-to-tr from-[#ff4694] to-[#776fff] opacity-20" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
@@ -13,7 +13,7 @@
 
 
 
-    <form class="max-w-sm mx-auto" method="POST" action="{{route('addAnnonce')}}">
+    <form class="max-w-sm mx-auto" method="POST" action="">
       @csrf
       <div class="mb-5">
         <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">title</label>
@@ -50,7 +50,7 @@
     
 
 
-</div>
+</div> --}}
 
 
 
@@ -62,18 +62,18 @@
 
 
 <!-- component -->
-<main class="w-screen h-screen flex justify-center items-center dark:bg-gray-900">
-  <div class="max-w-7xl dark:bg-gray-950 dark:text-white">
+<main class="w-screen h-screen flex justify-center items-center dark:bg-purple-100">
+  <div class="max-w-7xl dark:bg-white dark:text-white">
     <form class=" w-full p-4 rounded shadow-md" action="/submit-comment" method="post">
-      <h2 class="text-xl mb-4 tracking-wider font-lighter text-gray-900 dark:text-gray-200">Leave a Comment</h2>
-      <p class="text-gray-600 mb-4">Your email address will not be published. Required fields are marked *</p>
+      <h2 class="text-xl mb-4 tracking-wider font-lighter text-gray-900 dark:text-gray-200 md:text-sm ">Leave a Comment</h2>
+      <p class="text-gray-600 mb-4 md:text-sm">Your email address will not be published. Required fields are marked *</p>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <div class="mb-4 col-span-1 md:col-span-3">
           <textarea
         id="comment"
         name="comment"
-        class="w-full px-3 py-2 dark:bg-gray-900 rounded-sm border dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed resize-none"
+        class="w-full px-3 py-2 dark:bg-white rounded-sm border-gray-300 dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed resize-none md:text-sm"
         placeholder="Type Comment...*"
         rows="5"
 
@@ -86,7 +86,7 @@
         type="text"
         id="name"
         name="name"
-        class="w-full px-3 py-2 dark:bg-gray-900 rounded-sm border dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed"
+        class="w-full px-3 py-2 dark:bg-gray-900 rounded-sm border-gray-300 dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed"
         placeholder="Name*"
         required
       />
@@ -96,7 +96,7 @@
         type="email"
         id="email"
         name="email"
-        class="w-full px-3 py-2 dark:bg-gray-900 rounded-sm border dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed"
+        class="w-full px-3 py-2 dark:bg-gray-900 rounded-sm border-gray-300 dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed"
         placeholder="Email*"
         required
       />
@@ -106,7 +106,7 @@
         type="text"
         id="website"
         name="website"
-        class="w-full px-3 py-2 dark:bg-gray-900 rounded-sm border dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed"
+        class="w-full px-3 py-2 dark:bg-gray-900 rounded-sm border-gray-300 dark:border-none border-gray-300 focus:outline-none border-solid focus:border-dashed"
         placeholder="Website"
       />
         </div>

@@ -2,20 +2,36 @@
 
 @include('partials.sidebar')
 
-<div class="relative overflow-hidden min-h-screen">
-    <img src="{{ asset('images/pexels-anni-roenkae-2156881.jpg') }}" alt="" class="absolute inset-0 -z-10 h-screen w-full object-cover object-right bg-cover md:object-center">
+<body class="bg-purple-200">
+    
 
-<h1 class="block mb-2 text-xl font-medium text-white dark:text-white mt-20 ml-72">Create Category</h1>
+<div class="relative overflow-hidden min-h-screen ">
+    {{-- <img src="{{ asset('images/pexels-anni-roenkae-2156881.jpg') }}" alt="" class="absolute inset-0 -z-10 h-screen w-full object-cover object-right bg-cover md:object-center"> --}}
 
-    <form class="max-w-sm mx-auto mt-20" method="post" action="{{ route('addCategorie') }}">
+<h1 class="block mb-2 text-5xl font-bold text-white dark:text-white mt-20 ml-32 flex justify-center ">Create Category</h1>
+
+    {{-- <form class="max-w-sm mx-auto mt-20 " method="post" action="{{ route('addCategorie') }}">
         @csrf
         <div class="mb-5">
-            {{-- <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Create category</label> --}}
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Create category</label>
             <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
         </div>
 
         <button type="submit" name="addcat" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">Submit</button>
+    </form> --}}
+
+
+    <form class="max-w-md mx-auto" method="post" action="{{ route('addCategorie') }}"> 
+        @csrf
+        {{-- <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">create</label> --}}
+        <div class="relative">
+           
+            <input type="text" id="name" name="name" class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="create category" required /> 
+            <button type="submit" name="addcat" class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create</button>
+        </div>
     </form>
+
+
 
     <div class="divide-y divide-gray-100 ml-80 mr-20 bg-white px-5 rounded-lg">
         @foreach ($categories as $category)
@@ -35,22 +51,24 @@
                 </div>
                 
             </li>
-        </ul>
-        @endforeach
-    </div>
-
-    {{-- <form class="max-w-sm mx-auto mt-20" method="post" action="{{ route('updateCategorie') }}">
+        {{-- </ul>
+    <form class="max-w-sm mx-auto mt-20" method="post" action="{{ route('updateCategorie') }}">
         @csrf
         @method('PUT')
         <div class="mb-5">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Update category</label>
-            <input type="text" id="name" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
+            <input type="text" id="category" name="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="" required />
         </div>
 
         <!-- Include a hidden input field to pass the category ID -->
-        <input type="hidden" name="category_id" value="{{ $category->id }}">
+        <input type="hidden" name="categorieID" value="{{ $category->id }}">
 
         <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
     </form> --}}
+       @endforeach
+    </div>
+
 </div>
 
+  
+</body>
