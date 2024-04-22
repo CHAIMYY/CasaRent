@@ -12,4 +12,10 @@ class Category extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function annonce()
+{
+    return $this->hasMany(Annonce::class);
 }
+}
+

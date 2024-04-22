@@ -17,7 +17,7 @@ class Annonce extends Model
         'location',
         'image',
         'price',
-        'categorie_id',
+        'categories_id',
         'user_id',
     ];
 

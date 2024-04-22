@@ -62,7 +62,7 @@
       <ul role="list" class="divide-y divide-gray-100 ml-80  mr-20 bg-white px-5 rounded-lg mb-5 shadow-xl">
         <li class="flex justify-between gap-x-6 py-5">
           <div class="flex min-w-0 gap-x-4">
-            <img class="h-24 w-24 flex-none  bg-gray-50" src="" alt="">
+            <img class="h-24 w-24 flex-none  bg-gray-50" src="{{asset('images/' . $annonce->image) }}" alt="">
             <div class="min-w-0 flex-auto">
               <p class="text-xl font-semibold leading-6 text-gray-900">{{$annonce->title}}</p>
               <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$annonce->location}}</p>
@@ -72,7 +72,7 @@
           <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
             <p class="text-sm text-blue-700">By {{$annonce->user->name}}</p>
            
-            <form class="mt-1 text-xs leading-5 text-red-500"  action="deleteAd" method="post">
+            <form class="mt-1 text-xs leading-5 text-red-500"  action="{{ route('deleteAd' , $annonce->id) }}" method="post">
               @csrf
               @method('delete')
     

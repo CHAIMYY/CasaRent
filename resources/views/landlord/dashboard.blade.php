@@ -3,11 +3,14 @@
 {{-- <div class="relative overflow-hidden min-h-screen ">
     <img src="{{ asset('images/pexels-anni-roenkae-2156881.jpg') }}" alt="" class="absolute inset-0 -z-10 h-screen  w-full object-cover object-right bg-cover  md:object-center">
     --}}
+
+  
+
     <div class="mt-28 ml-36">
 
  <div class="container mx-auto">
             <div class="w-72 bg-white max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
-              <div class="h-20 bg-purple-900 flex items-center justify-between">
+              <div class="h-20 bg-red-400 flex items-center justify-between">
                 <p class="mr-0 text-white text-lg pl-5">Advertisements</p>
               </div>
               <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
@@ -20,7 +23,7 @@
 
 
 
-        <form class="max-w-md mx-auto mt-10 shadow-xl" action="{{route('landlord.dashboard')}}" method="GET"> 
+        <form class="max-w-md mx-auto mt-10 shadow-xl mb-20" action="{{route('landlord.dashboard')}}" method="GET"> 
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
             <div class="relative">
                 <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -46,7 +49,7 @@
     
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
-                  <img class="rounded-t-lg" src="{{ $annonce->image }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
+                  <img class="rounded-t-lg" src="{{asset('images/' . $annonce->image) }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
               </a>
               <div class="p-5">
                   <a href="#">
@@ -60,14 +63,11 @@
                   <p class="mb-3 font-normal text-red-700 dark:text-red-400  rounded drop-shadow-md px-5 py-0.5">contact : 0645982736</p>
                   <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  px-5 py-0.5">April 14</p>
                   </div>
-                  <a href="" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                      Read more
-                       <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                      </svg>
-                  </a>
+                  <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                    Delete
+                  </button>
               </div>
           </div>  
-          
+
             @endforeach
 

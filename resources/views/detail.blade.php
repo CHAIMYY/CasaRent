@@ -77,15 +77,15 @@
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
                 <span class="absolute top-1/2 left-1/2 text-2xl font-semibold text-white -translate-x-1/2 -translate-y-1/2 sm:text-3xl dark:text-gray-800">First Slide</span>
-                <img src="images/pexels-jean-van-der-meulen-1457842.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                <img src="{{asset('images/' . $annonce->image) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="images/pexels-jean-van-der-meulen-1457842.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                <img src="{{asset('images/' . $annonce->image) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="images/pexels-jean-van-der-meulen-1457842.jpg" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
+                <img src="{{asset('images/' . $annonce->image) }}" class="block absolute top-1/2 left-1/2 w-full -translate-x-1/2 -translate-y-1/2" alt="...">
             </div>
         </div>
         <!-- Slider indicators -->
@@ -112,19 +112,19 @@
 	
     <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
 </div>
-@foreach ($annonce as $item)
+
 
   
       <!-- Product info -->
       <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
         <div class="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Basic Tee 6-Pack</h1>
+          <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{{ $annonce->title }}</h1>
         </div>
   
         <!-- Options -->
         <div class="mt-4 lg:row-span-3 lg:mt-0">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl tracking-tight text-gray-900">{{ $item->price }}night</p>
+          <p class="text-3xl tracking-tight text-gray-900"> {{ $annonce->price }} night</p>
   
           <!-- Reviews -->
           {{-- <div class="mt-6">
@@ -156,7 +156,7 @@
           <form class="mt-10">
             <!-- Colors -->
             <div>
-              <h2 class="text-xl font-medium text-gray-900 pb-5">{{$item->title}}</h2>
+              <h2 class="text-xl font-medium text-gray-900 pb-5"></h2>
   
               {{-- <fieldset class="mt-4">
                 <legend class="sr-only">Choose a color</legend>
@@ -301,7 +301,7 @@
             <h3 class="sr-only">Description</h3>
   
             <div class="space-y-6">
-              <p class="text-base text-gray-900">{{$item->description}}/p>
+              <p class="text-base text-gray-900">{{ $annonce->location }}</p>
             </div>
           </div>
   
@@ -322,7 +322,7 @@
             <h2 class="text-sm font-medium text-gray-900">Details</h2>
   
             <div class="mt-4 space-y-6">
-              <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
+              <p class="text-sm text-gray-600">{{ $annonce->description }}</p>
             </div>
           </div>
         </div>
@@ -330,7 +330,7 @@
     </div>
   </div>
 
-@endforeach
+
 
 
 

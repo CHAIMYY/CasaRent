@@ -1,27 +1,12 @@
 @extends('layout')
 @include('partials.navbar')
 
-  <!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/aspect-ratio'),
-    ],
-  }
-  ```
--->
 <div class="bg-white">
+    
     <div class="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
       <h2 class="sr-only">Products</h2>
 
-    {{-- <div class="full-w h-20 bg-red-500 mb-20 ">
-      <h2 class="">Products</h2>
-    </div> --}}
+  
 <form class="flex items-center max-w-lg mx-auto mb-20" method="GET" action="{{ route('home') }}">
   @csrf   
   <label for="voice-search" class="sr-only">Search</label>
@@ -30,10 +15,10 @@
         
       </div>
       <input type="text" id="voice-search" name="search" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search houses, apartements, villas..." required />
-      <button type="button" class="absolute inset-y-0 end-0 flex items-center pe-3">
-        
-      </button>
+     
+
   </div>
+ 
   <button type="submit" class="inline-flex items-center py-2.5 px-3 ms-2 text-sm font-medium text-white bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
       <svg class="w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
@@ -42,66 +27,34 @@
 </form>
 
 
-{{-- 
-<form class="max-w-lg mx-auto" method="GET" action="{{route('home')}}">
-    <div class="flex">
-        <label for="search-dropdown" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Your Email</label>
-        <button id="dropdown-button" data-dropdown-toggle="dropdown" class="flex-shrink-0 z-10 inline-flex items-center py-2.5 px-4 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600" type="button">All categories <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-  </svg></button>
-  @foreach ($categories as $category)
-      
-  
-        <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-            <select class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdown-button">
-            <li>
-                <option type="button" class="inline-flex w-full px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white" value="{{$category->id}}">{{$category->name}}</option>
-            </li>
-           
-            </select>
-        </div>
-        
-        @endforeach
 
-        <div class="relative w-full">
-            <input type="search" id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500" placeholder="Search Mockups, Logos, Design Templates..." required />
-            <button type="submit" class="absolute top-0 end-0 p-2.5 text-sm font-medium h-full text-white bg-blue-700 rounded-e-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
-                </svg>
-                <span class="sr-only">Search</span>
-            </button>
-        </div>
+
+<form action="{{ route('home') }}" method="GET">
+    @csrf
+    
+    <div class="flex items-center justify-center py-4 md:py-8 flex-wrap">
+        <button type="submit" name="category_id" value="" class="text-blue-700 hover:text-white border border-blue-600 bg-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:hover:bg-blue-500 dark:bg-gray-900 dark:focus:ring-blue-800">All categories</button>
+        @foreach($categories as $category)
+            <button type="submit" name="category_id" value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }} class="text-gray-900 border border-white hover:border-gray-200 dark:border-gray-900 dark:bg-gray-900 dark:hover:border-gray-700 bg-white focus:ring-4 focus:outline-none focus:ring-gray-300 rounded-full text-base font-medium px-5 py-2.5 text-center me-3 mb-3 dark:text-white dark:focus:ring-gray-800">{{ $category->name }}</button>
+        @endforeach
     </div>
-</form> --}}
+
+</form>
 
 
   
       <div class="grid grid-cols-1 gap-x-6 gap-y-20 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-        {{-- <a href="#" class="group">
-          <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-            <img src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." class="h-full w-full object-cover object-center group-hover:opacity-75">
-          </div>
-          <h3 class="mt-4 text-sm text-gray-700">Earthen Bottle</h3>
-          <p class="mt-1 text-lg font-medium text-gray-900">$48</p>
-       
-        </a> --}}
-
-           {{-- @foreach ($categories as $category)
-    {{ $category->name }} --}}
-          
+      
     
     @foreach ($annonces as $annonce)
               
        <!-- Or any other usage you have for categories -->
 
-
-
-
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-              <img class="rounded-t-lg" src="{{ $annonce->image }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
-          </a>
+        
+              <a href="#">
+                <img class="rounded-t-lg object-fill h-48 w-full" src="{{asset('images/' . $annonce->image) }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
+            </a>
           <div class="p-5">
               <a href="#">
                   <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white pb-5">{{ $annonce->title }}</h5>
@@ -115,121 +68,17 @@
               <p class="mb-3 font-normal text-red-700 dark:text-red-400  rounded drop-shadow-md px-5 py-0.5">contact : 0645982736</p>
               <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  px-5 py-0.5">April 14</p>
               </div>
-              <a href="{{route('details')}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Read more
-                   <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                  </svg>
-              </a>
-          </div>
-      </div>  
-        @endforeach
-       {{-- @endforeach  --}}
-       
-       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-          <a href="#">
-              <img class="rounded-t-lg" src="images/pexels-jean-van-der-meulen-1457842.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
-          </a>
-          <div class="p-5">
-              <a href="#">
-                  <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white pb-5">Apartement à louer</h5>
-              </a>
-            
-              {{-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p> --}}
-              {{-- col-span-2 --}}
-              <div class="grid grid-cols-1 gap-2">
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5 ">location : USA, Washington</p>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-green-200 rounded drop-shadow-md px-5 py-0.5 ">Price : 1000$</p>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5">contact : 0645982736</p>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  px-5 py-0.5">April 14</p>
-              </div>
-              <a href="{{route('details')}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                  Read more
-                   <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                  </svg>
-              </a>
-          </div>
-      </div>  
-
-
-      <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-            <img class="rounded-t-lg" src="images/pexels-jean-van-der-meulen-1457842.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
-        </a>
-        <div class="p-5">
-            <a href="#">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white pb-5">Apartement à louer</h5>
-            </a>
-          
-            {{-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p> --}}
-            {{-- col-span-2 --}}
-            <div class="grid grid-cols-1 gap-2">
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5 ">location : USA, Washington</p>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-green-200 rounded drop-shadow-md px-5 py-0.5 ">Price : 1000$</p>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5">contact : 0645982736</p>
-            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  px-5 py-0.5">April 14</p>
-            </div>
-            <a href="{{route('details')}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+              <a href="{{ route('details', ['id' => $annonce->id]) }}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 Read more
-                 <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                 </svg>
             </a>
-        </div>
-    </div>  
-
-    <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <a href="#">
-          <img class="rounded-t-lg" src="images/pexels-jean-van-der-meulen-1457842.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
-      </a>
-      <div class="p-5">
-          <a href="#">
-              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white pb-5">Apartement à louer</h5>
-          </a>
-        
-          {{-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p> --}}
-          {{-- col-span-2 --}}
-          <div class="grid grid-cols-1 gap-2">
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5 ">location : USA, Washington</p>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-green-200 rounded drop-shadow-md px-5 py-0.5 ">Price : 1000$</p>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5">contact : 0645982736</p>
-          <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  px-5 py-0.5">April 14</p>
+            
           </div>
-          <a href="{{route('details')}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-              Read more
-               <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-              </svg>
-          </a>
-      </div>
-  </div>  
-
-  <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-    <a href="#">
-        <img class="rounded-t-lg" src="images/pexels-jean-van-der-meulen-1457842.jpg" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
-    </a>
-    <div class="p-5">
-        <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white pb-5">Apartement à louer</h5>
-        </a>
-      
-        {{-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"></p> --}}
-        {{-- col-span-2 --}}
-        <div class="grid grid-cols-1 gap-2">
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5 ">location : USA, Washington</p>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-green-200 rounded drop-shadow-md px-5 py-0.5 ">Price : 1000$</p>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 bg-gray-200 rounded drop-shadow-md px-5 py-0.5">contact : 0645982736</p>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  px-5 py-0.5">April 14</p>
-        </div>
-        <a href="{{route('details')}}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-            Read more
-             <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-            </svg>
-        </a>
-    </div>
-</div>  
+      </div>  
+        @endforeach
+ 
 
       {{-- <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
@@ -312,7 +161,7 @@
 
 
   <!-- component -->
-<div
+{{-- <div
 class="flex flex-col space-y-8  min-w-screen h-screen animated fadeIn faster  fixed  left-0 top-0 flex justify-center items-center inset-0 z-50 outline-none focus:outline-none bg-gray-300">
 <div class="block rounded-lg bg-white w-72 mt-32">
 <div class="relative overflow-hidden bg-cover bg-no-repeat" data-te-ripple-init data-te-ripple-color="light">
@@ -350,8 +199,10 @@ class="flex flex-col space-y-8  min-w-screen h-screen animated fadeIn faster  fi
     <h5 class="mb-2 text-sm font-bold leading-tight text-neutral-800 dark:text-neutral-50">
         Price per night
     </h5>
+</div> 
 </div>
-</div></div>
+</div>
+--}}
   @include('partials.footer')
 
 

@@ -36,7 +36,7 @@ class AnnonceController extends Controller
             $annoncesQuery->where('title', 'like', "%$search%");
         }
         if ($categoryId) {
-            $annoncesQuery->where('category_id', $categoryId);
+            $annoncesQuery->where('categories_id', $categoryId);
         }
     
        
@@ -95,7 +95,7 @@ class AnnonceController extends Controller
 
     public function showDetails($id)
     {
-        $annonce = Annonce::with('category', 'user')->findOrFail($id);
+        $annonce = Annonce::with('category', 'user')->find($id);
     
         return view('detail', compact('annonce'));
     }
@@ -105,29 +105,42 @@ class AnnonceController extends Controller
 
     public function create(Request $request)
     {
-        try {
+            $categories = Category::all();
+
+        // try {
             $request->validate([
                 'title' => ['required', 'string', 'max:255'],
                 'description' => ['required', 'string'],
                 'location' => ['required', 'string', 'max:255'],
                 'price' => ['required', 'numeric'], 
-                'image' => ['required', 'image'],
+                'image' => ['required', 'file'], // Change 'image' rule to 'file'
             ]);
             $user = auth()->user();
+
+            $imageName = null;
+
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+
+            $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imageFile->move(public_path('images'), $imageName);
+        }
+
             Annonce::create([
                 'title' => $request->title,
                 'description' => $request->description,
-                'image' => $request->image,
+                'image' => $imageName, 
                 'location' =>  $request->location,
                 'type' => $request->type,
                 'price' => $request->price,
                 'user_id' => $user->id,
-                'categorie_id' => $request->categorieID,
+                'categories_id' => $request->categories_id,
             ]);
+           
             return redirect()->route('landlord.dashboard');
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
+        // } catch (\Exception $e) {
+        //     dd($e->getMessage());
+        // }
 
         
 
