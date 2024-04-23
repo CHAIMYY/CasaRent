@@ -49,7 +49,7 @@
     
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
               <a href="#">
-                  <img class="rounded-t-lg" src="{{asset('images/' . $annonce->image) }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
+                  <img class="rounded-t-lg object-fill h-48 w-full" src="{{asset('images/' . $annonce->image) }}" alt="Tall slender porcelain bottle with natural clay textured body and cork stopper." />
               </a>
               <div class="p-5">
                   <a href="#">
@@ -63,9 +63,19 @@
                   <p class="mb-3 font-normal text-red-700 dark:text-red-400  rounded drop-shadow-md px-5 py-0.5">contact : 0645982736</p>
                   <p class="mb-3 font-normal text-gray-700 dark:text-gray-400  px-5 py-0.5">April 14</p>
                   </div>
-                  <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                    Delete
-                  </button>
+                  {{-- <button class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+                    update
+                  </button> --}}
+
+                  <form class="mt-1 text-xs leading-5 text-red-500"  action="{{ route('deleteAd' , $annonce->id) }}" method="post">
+                    @csrf
+                    @method('delete')
+          
+                    <button type="submit" class="mt-1 text-xs leading-5 text-white bg-red-600 px-5 py-3 rounded-lg hover:bg-red-700 ">delete</button>
+                </form>
+                <a href="{{ route('annonces.update', $annonce->id) }}" class="btn btn-primary">Edit</a>
+
+
               </div>
           </div>  
 

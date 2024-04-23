@@ -24,6 +24,9 @@ Route::get('/logout', [AuthController::class , 'logout'])->name('logout');
 Route::get('/', function () {
     return view('landing');
 });
+Route::get('/about', function () {
+    return view('about');
+});
 // Route::get('/statistique', function () {
 //     return view('admin.statistique');
 // })->name('statistique');
@@ -85,7 +88,8 @@ Route::get('/annonces', [UserController::class, 'stats'])->name('stats');
 // Route::middleware('auth', 'advertiser')->group(function () {
     Route::get('/dashboard', [AnnonceController::class, 'viewlandlord'])->name('landlord.dashboard');
     Route::post('/create', [AnnonceController::class, 'create'])->name('addAnnonce');
-    
+    Route::put('/annonces/{id}', [AnnonceController::class, 'create'])->name('annonces.update');
+
 // });
 
 

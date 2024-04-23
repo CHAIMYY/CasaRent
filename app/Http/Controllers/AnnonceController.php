@@ -38,7 +38,9 @@ class AnnonceController extends Controller
         if ($categoryId) {
             $annoncesQuery->where('categories_id', $categoryId);
         }
-    
+        if ($request->ajax()) {
+            return view('home', compact('annonces'));
+        }
        
         $annonces = $annoncesQuery->get();
     
@@ -68,6 +70,11 @@ class AnnonceController extends Controller
             $annoncesQuery->where('title', 'like', "%$search%");
         }
         $annonces = $annoncesQuery->paginate(9);
+
+
+        // if ($request->ajax()) {
+        //     return view('admin.allannonces', compact('annonces'));
+        // }
     
         return view('admin.allannonces', compact('annonces','totalAnnonce','categories'));
     }
@@ -75,8 +82,15 @@ class AnnonceController extends Controller
 
 
     public function delete(Annonce $annonce){
+        $user = Auth::id();
         $annonce->delete();
-        return redirect()->route('viewAll');
+        if(auth()->user()->role === 'admin'){
+          return redirect()->route('viewAll');  
+        }else{
+        return redirect()->route('landlord.dashboard');
+    
+        }
+        
     }
     
 
@@ -96,7 +110,7 @@ class AnnonceController extends Controller
     public function showDetails($id)
     {
         $annonce = Annonce::with('category', 'user')->find($id);
-    
+        
         return view('detail', compact('annonce'));
     }
     
@@ -170,6 +184,51 @@ class AnnonceController extends Controller
 
     return view('landlord.dashboard', compact('annonces', 'categories'));
 }
+
+
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string'],
+            'location' => ['required', 'string', 'max:255'],
+            'price' => ['required', 'numeric'],
+            'image' => ['nullable', 'file'], 
+        ]);
+
+        $user = auth()->user();
+        $imageName = null;
+
+       
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+
+            $imageName = time() . '.' . $imageFile->getClientOriginalExtension();
+            $imageFile->move(public_path('images'), $imageName);
+        }
+
+        
+        $annonce = Annonce::findOrFail($id);
+
+       
+        $annonce->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'location' => $request->location,
+            'type' => $request->type,
+            'price' => $request->price,
+            'categories_id' => $request->categories_id,
+        ]);
+
+       
+        if ($imageName) {
+            $annonce->image = $imageName;
+            $annonce->save();
+        }
+
+        return redirect()->route('landlord.dashboard');
+    }
 
 
 

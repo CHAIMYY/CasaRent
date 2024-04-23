@@ -74,6 +74,51 @@ class AuthController extends Controller
     }
     
 
+
+    // public function registerPost(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required',
+    //         'email' => 'required|email|unique:users',
+    //         'password' => 'required',
+    //         'role' => 'required|in:user,advertiser',
+    //         'photo' => ['nullable', 'image'],
+    //     ]);
+    
+        
+    //     $photoName = null;
+    //     if ($request->hasFile('photo')) {
+    //         $photoFile = $request->file('photo');
+    //         $photoName = time() . '.' . $photoFile->getClientOriginalExtension();
+    //         $photoFile->move(public_path('images'), $photoName);
+    //     }
+    
+        
+    //     $userData = [
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //         'role' => $request->role,
+    //         'photo' => $photoName,
+    //     ];
+    
+        
+    //     $user = User::create($userData);
+    
+    //     if (!$user) {
+    //         return redirect()->route('register')->with("error", "Registration failed, try again");
+    //     }
+    
+       
+    //     $redirectRoute = $request->role === 'advertiser' ? 'landlord.dashboard' : 'home';
+    //     return redirect()->route($redirectRoute)->with("success", "Registration success, login to access the app");
+    // }
+
+
+
+
+
+
         // public function logout(){
             
         //     Session::flush();

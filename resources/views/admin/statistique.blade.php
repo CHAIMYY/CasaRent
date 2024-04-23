@@ -1,5 +1,5 @@
 @include('partials.sidebar')
-<body class="bg-purple-100">
+<body class="bg-gradient-to-r from-cyan-100 to-blue-200">
 {{-- 
 
 <div class="w-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 ml-72 mr-20">
