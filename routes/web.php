@@ -27,18 +27,18 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
-// Route::get('/statistique', function () {
-//     return view('admin.statistique');
-// })->name('statistique');
+Route::get('/update', function () {
+    return view('landlord.updateAnnonce');
+});
 Route::get('/landing', function () {
     return view('landing');
 })->name('landing');
 Route::get('/test', function () {
     return view('test');
 })->name('home');
-// Route::get('/details', function () {
-//     return view('detail');
-// })->name('details');
+Route::get('/chat', function () {
+    return view('chat');
+})->name('chat');
 Route::get('/create', function () {
     return view('landlord.create');
 })->name('create');
@@ -88,7 +88,7 @@ Route::get('/annonces', [UserController::class, 'stats'])->name('stats');
 // Route::middleware('auth', 'advertiser')->group(function () {
     Route::get('/dashboard', [AnnonceController::class, 'viewlandlord'])->name('landlord.dashboard');
     Route::post('/create', [AnnonceController::class, 'create'])->name('addAnnonce');
-    Route::put('/annonces/{id}', [AnnonceController::class, 'create'])->name('annonces.update');
+    Route::put('/annonce/{id}', [AnnonceController::class, 'create'])->name('annonces.update');
 
 // });
 
