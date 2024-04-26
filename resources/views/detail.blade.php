@@ -124,7 +124,7 @@
         <!-- Options -->
         <div class="mt-4 lg:row-span-3 lg:mt-0">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl tracking-tight text-gray-900"> {{ $annonce->price }} night</p>
+          <p class="text-3xl tracking-tight text-gray-900"> {{ $annonce->price }} MAD night</p>
   
           <!-- Reviews -->
           {{-- <div class="mt-6">
@@ -285,10 +285,13 @@
                 </div>
               </fieldset>
             </div> --}}
-        <div class="grid grid-cols-1 gap-4">
-            <h3 class="text-sm font-medium text-gray-600">2 Bathrooms</h3>
-            <h3 class="text-sm font-medium text-gray-600">1 Kitchen</h3>
-            <h3 class="text-sm font-medium text-gray-600">3 Bedrooms</h3>
+        <div class="grid grid-rows-3 grid-flow-col gap-2">
+         
+        <img class="h-20 w-20 flex-none rounded-full bg-gray-50 row-span-3" src="{{ $annonce->user->photo }}" alt="">
+        
+            <h2 class="text-xl font-bold text-gray-600 col-span-5">{{ $annonce->user->name }}</h2>
+            <h3 class="text-sm font-medium text-gray-600 col-span-5">{{ $annonce->user->email }}</h3>
+            
         </div>
         
             <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Contact hosted</button>

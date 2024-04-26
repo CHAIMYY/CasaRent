@@ -15,11 +15,7 @@ use App\Http\Controllers\UserController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/login', [AuthController::class , 'login'])->name('login');
-Route::post('/login', [AuthController::class , 'loginPost'])->name('login.post');
-Route::get('/register',  [AuthController::class , 'register'])->name('register');
-Route::post('/register',  [AuthController::class , 'registerPost'])->name('register.post');
-Route::get('/logout', [AuthController::class , 'logout'])->name('logout');
+
 
 Route::get('/', function () {
     return view('landing');
@@ -27,6 +23,9 @@ Route::get('/', function () {
 Route::get('/about', function () {
     return view('about');
 });
+Route::get('/ban', function () {
+    return view('ban');
+})->name('ban');
 Route::get('/update', function () {
     return view('landlord.updateAnnonce');
 });
@@ -39,9 +38,9 @@ Route::get('/test', function () {
 Route::get('/chat', function () {
     return view('chat');
 })->name('chat');
-Route::get('/create', function () {
-    return view('landlord.create');
-})->name('create');
+Route::get('/profile', function () {
+    return view('profile');
+});
 
 route::get('/Annonces');
 
@@ -51,48 +50,49 @@ route::get('/Annonces');
 
 
 
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'loginPost'])->name('login.post');
+Route::get('/register',  [AuthController::class, 'register'])->name('register');
+Route::post('/register',  [AuthController::class, 'registerPost'])->name('register.post');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 // Route::post('/dashboard/search', [AnnonceController::class, 'search'])->name('search');
-
-
 // Route::get('/annonces', [AnnonceController::class, 'show'])->name('show.annonce');
 
-Route::get('/home', [AnnonceController::class, 'viewClient'])->name('home');
-Route::post('/annonce/search', [AnnonceController::class, 'viewClient'])->name('events.search');
-Route::get('/details/{id}', [AnnonceController::class, 'showDetails'])->name('details');
 
 
+Route::middleware('auth', 'banned')->group(function () {
+
+    Route::get('/home', [AnnonceController::class, 'viewClient'])->name('home');
+    Route::post('/annonce/search', [AnnonceController::class, 'viewClient'])->name('events.search');
+    Route::get('/details/{id}', [AnnonceController::class, 'showDetails'])->name('details');
 
 
-
-Route::get('/annonces', [UserController::class, 'stats'])->name('stats');
-
-
-
-// Route::middleware('auth', 'admin')->group(function () {
-    Route::get('/Categories', [CategoryController::class, 'view'])->name('categories');
-    Route::post('/Categories', [CategoryController::class, 'create'])->name('addCategorie');
-    Route::delete('/Categories/{category}', [CategoryController::class, 'delete'])->name('deleteCategorie');
-    //still not working
-    Route::put('/Categorie', [CategoryController::class, 'update'])->name('updateCategorie');
-    Route::get('/annonces', [AnnonceController::class, 'viewAll'])->name('admin.annonces');
-    Route::get('/Users', [UserController::class, 'viewUsers'])->name('users');
-    Route::get('/users/search', [UserController::class, 'searchUsers'])->name('users.search');
-    Route::put('/ban/user/{userId}',  [UserController::class, 'banUser'])->name('ban.user');
-    Route::put('/Unban/user/{userId}',  [UserController::class, 'unbanUser'])->name('unban.user');
-    Route::get('/statistique', [UserController::class, 'statistics'])->name('statistique');
-    // Route::get('/Allannonces', [AnnonceController::class, 'adStats'])->name('adstats');
-    Route::get('/Allannonces', [AnnonceController::class, 'viewAll'])->name('viewAll');
-    Route::delete('/Allannonces/{annonce}', [AnnonceController::class, 'delete'])->name('deleteAd');
-// });
-
-// Route::middleware('auth', 'advertiser')->group(function () {
-    Route::get('/dashboard', [AnnonceController::class, 'viewlandlord'])->name('landlord.dashboard');
-    Route::post('/create', [AnnonceController::class, 'create'])->name('addAnnonce');
-    Route::put('/annonce/{id}', [AnnonceController::class, 'create'])->name('annonces.update');
-
-// });
+    Route::middleware('advertiser')->group(function () {
+        Route::get('/dashboard', [AnnonceController::class, 'viewlandlord'])->name('landlord.dashboard');
+        Route::post('/create', [AnnonceController::class, 'create'])->name('addAnnonce');
+        Route::get('/annonce/{id}/edit', [AnnonceController::class, 'EditAnnoce'])->name('annonces.edit');
+        Route::put('/annonce/{id}/update', [AnnonceController::class, 'update'])->name('annonces.update');
+    });
 
 
+    Route::middleware('admin')->group(function () {
+        Route::get('/Categories', [CategoryController::class, 'view'])->name('categories');
+        Route::post('/Categories', [CategoryController::class, 'create'])->name('addCategorie');
+        Route::delete('/Categories/{category}', [CategoryController::class, 'delete'])->name('deleteCategorie');
+        //still not working
+        Route::put('/Categorie', [CategoryController::class, 'update'])->name('updateCategorie');
+        Route::get('/annonces', [AnnonceController::class, 'viewAll'])->name('admin.annonces');
+        Route::get('/Users', [UserController::class, 'viewUsers'])->name('users');
+        Route::get('/users/search', [UserController::class, 'searchUsers'])->name('users.search');
+        Route::put('/ban/user/{userId}',  [UserController::class, 'banUser'])->name('ban.user');
+        Route::put('/Unban/user/{userId}',  [UserController::class, 'unbanUser'])->name('unban.user');
+        Route::get('/statistique', [UserController::class, 'statistics'])->name('statistique');
+        // Route::get('/Allannonces', [AnnonceController::class, 'adStats'])->name('adstats');
+        Route::get('/Allannonces', [AnnonceController::class, 'viewAll'])->name('viewAll');
+        Route::delete('/Allannonces/{annonce}', [AnnonceController::class, 'delete'])->name('deleteAd');
+        Route::get('/annonces', [UserController::class, 'stats'])->name('stats');
 
-
-
+    });
+});

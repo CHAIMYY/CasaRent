@@ -1,5 +1,6 @@
-@include('partials.sidebar')
-<form action="{{ route('annonce.update', $annonce->id) }}" method="POST" enctype="multipart/form-data">
+{{-- @include('partials.sidebar') --}}
+@extends('layout')
+<form action="{{ route('annonces.update', $annonce->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
 

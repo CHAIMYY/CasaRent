@@ -2,28 +2,6 @@
 @extends('layout')
 
 
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-white">
-  <body class="h-full">
-  ```
--->
 
 <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
   <img src="{{ asset('images/pexels-jean-van-der-meulen-1457842.jpg') }}" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center">

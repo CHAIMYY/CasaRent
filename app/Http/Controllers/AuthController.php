@@ -52,12 +52,21 @@ class AuthController extends Controller
             'email'=>'required|email|unique:users',
             'password'=>'required',
             'role'=>'required|in:user,advertiser', 
+            'photo' => ['nullable', 'image'],
         ]);
+
+        $photoName = null;
+            if ($request->hasFile('photo')) {
+                $photoFile = $request->file('photo');
+                $photoName = time() . '.' . $photoFile->getClientOriginalExtension();
+                $photoFile->move(public_path('images'), $photoName);
+            }
     
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['password'] = Hash::make($request->password);
         $data['role'] = $request->role;
+        $data['photo'] = $photoName;
     
         $user = User::create($data);
     

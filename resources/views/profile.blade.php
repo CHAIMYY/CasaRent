@@ -1,1 +1,3 @@
-@extends('layout')
+@include('partials.navbar')
+
+

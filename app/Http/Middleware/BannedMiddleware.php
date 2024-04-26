@@ -13,13 +13,13 @@ class BannedMiddleware
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    // public function handle($request, Closure $next)
-    // {
-    //     if (auth()->check() && auth()->user()->banned) {
-    //         auth()->logout();
-    //         return redirect()->route('login')->with('banned_message', 'You are banned');
-    //     }
+    public function handle($request, Closure $next)
+    {
+        if (auth()->check() && auth()->user()->banned) {
+            auth()->logout();
+            return redirect()->route('ban')->with('banned_message', 'You are banned');
+        }
     
-    //     return $next($request);
-    // }
+        return $next($request);
+    }
 }

@@ -23,6 +23,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         // \App\Http\Middleware\AdminMiddleware::class,
         // \App\Http\Middleware\BannedMiddleware::class,
+        // 'ban' => \App\Http\Middleware\BannedMiddleware::class,
         // \App\Http\Middleware\UserMiddleware::class,
         // \App\Http\Middleware\AdvertiserMiddleware::class,
     ];
@@ -72,5 +73,9 @@ class Kernel extends HttpKernel
         'signed' => \App\Http\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+
+        'banned' => \App\Http\Middleware\BannedMiddleware::class,
+        'advertiser' => \App\Http\Middleware\AdvertiserMiddleware::class,
+        'admin' => \App\Http\Middleware\AdminMiddleware::class,
     ];
 }

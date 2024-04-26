@@ -110,6 +110,7 @@ class AnnonceController extends Controller
     public function showDetails($id)
     {
         $annonce = Annonce::with('category', 'user')->find($id);
+   
         
         return view('detail', compact('annonce'));
     }
@@ -186,9 +187,18 @@ class AnnonceController extends Controller
 }
 
 
+public function EditAnnoce($id) {
+    $annonce = Annonce::findOrFail($id);
+    $categories =Category::all();
+    return view('landlord.updateAnnonce', compact('annonce' , 'categories'));
+}
+
+
+
 
     public function update(Request $request, $id)
     {
+        //dd($request);
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
