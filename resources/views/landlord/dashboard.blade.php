@@ -1,6 +1,6 @@
 @include('partials.sidebar')
 
-<body class="bg-purple-100">
+<body class="bg-gradient-to-r from-violet-100 to-blue-200">
     {{-- <div class="relative overflow-hidden min-h-screen ">
     <img src="{{ asset('images/pexels-anni-roenkae-2156881.jpg') }}" alt="" class="absolute inset-0 -z-10 h-screen  w-full object-cover object-right bg-cover  md:object-center">
     --}}
@@ -86,13 +86,15 @@
                         @csrf
                         @method('delete')
 
+                      <div>  
+
                         <button type="submit"
                             class="mt-1 text-xs leading-5 text-white bg-red-600 px-5 py-3 rounded-lg hover:bg-red-700 ">delete</button>
                     </form>
 
-                    <a href="{{ route('annonces.edit', $annonce->id) }}">ok</a>
+                    <a href="{{ route('annonces.edit', $annonce->id) }}" class="mt-1 text-xs leading-5 text-white bg-red-600 px-5 py-3 rounded-lg hover:bg-red-700 ">ok</a>
 
-
+                   </div>
 
                 </div>
             </div>

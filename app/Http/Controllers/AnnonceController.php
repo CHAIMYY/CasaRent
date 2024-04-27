@@ -115,14 +115,18 @@ class AnnonceController extends Controller
         return view('detail', compact('annonce'));
     }
     
-    
+    public function createAnnonce() {
+     
+        $categories =Category::all();
+        return view('landlord.create', compact('categories'));
+    }
     
 
     public function create(Request $request)
     {
             $categories = Category::all();
 
-        // try {
+        try {
             $request->validate([
                 'title' => ['required', 'string', 'max:255'],
                 'description' => ['required', 'string'],
@@ -153,9 +157,9 @@ class AnnonceController extends Controller
             ]);
            
             return redirect()->route('landlord.dashboard');
-        // } catch (\Exception $e) {
-        //     dd($e->getMessage());
-        // }
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
 
         
 

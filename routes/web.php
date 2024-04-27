@@ -71,6 +71,7 @@ Route::middleware('auth', 'banned')->group(function () {
 
     Route::middleware('advertiser')->group(function () {
         Route::get('/dashboard', [AnnonceController::class, 'viewlandlord'])->name('landlord.dashboard');
+        Route::get('/create', [AnnonceController::class, 'createAnnonce'])->name('addAnnonce');
         Route::post('/create', [AnnonceController::class, 'create'])->name('addAnnonce');
         Route::get('/annonce/{id}/edit', [AnnonceController::class, 'EditAnnoce'])->name('annonces.edit');
         Route::put('/annonce/{id}/update', [AnnonceController::class, 'update'])->name('annonces.update');
