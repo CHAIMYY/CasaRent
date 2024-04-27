@@ -18,7 +18,7 @@
                 <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
                     <p>TOTAL</p>
                 </div>
-                <p class="py-4 text-3xl ml-5">5</p>
+                <p class="py-4 text-3xl ml-5">{{ $AnnounceCount }}</p>
                 <!-- <hr > -->
             </div>
         </div>
@@ -86,13 +86,13 @@
                         @csrf
                         @method('delete')
 
-                      <div>  
+                      <div class="grid grid-cols-3 gap-2">  
 
                         <button type="submit"
-                            class="mt-1 text-xs leading-5 text-white bg-red-600 px-5 py-3 rounded-lg hover:bg-red-700 ">delete</button>
+                            class="mt-1 text-base text-white bg-red-600 px-5 py-3 rounded-lg hover:bg-red-700 ">delete</button>
                     </form>
 
-                    <a href="{{ route('annonces.edit', $annonce->id) }}" class="mt-1 text-xs leading-5 text-white bg-red-600 px-5 py-3 rounded-lg hover:bg-red-700 ">ok</a>
+                    <a href="{{ route('annonces.edit', $annonce->id) }}" class="mt-1 text-base  text-green-500  font-bold  px-5 py-3  ">Edit</a>
 
                    </div>
 

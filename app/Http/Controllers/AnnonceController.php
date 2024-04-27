@@ -9,18 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class AnnonceController extends Controller
 {
-    // public function viewClient()
-    // {
-    //     $user = Auth::id();
-    //     $categories = Category::all();
-    //     $annonces = Annonce::where('user_id', $user)
-    //         ->orderby('created_at', 'desc')
-    //         ->get();
-    //     $annonces = Annonce::all();
-    //     // dd($annonce);
-    //     return view('home', compact('annonces'));
-
-    // }
+   
 
     public function viewClient(Request $request)
     {
@@ -50,14 +39,7 @@ class AnnonceController extends Controller
 
 
 
-    // public function viewAll()
-    // {
-    //     $user = Auth::id();
-    //     $categories = Category::all();
-    //     $annonces = Annonce::orderby('created_at', 'desc')
-    //         ->paginate(9);
-    //     return view('admin.allannonces', compact('annonces'), compact('categories'));
-    // }
+   
 
     public function viewAll(Request $request)
     {
@@ -94,18 +76,7 @@ class AnnonceController extends Controller
     }
     
 
-    // public function viewClient(Request $request)
-    // {
-    //     $categories = Category::all();
-    //     $query = Annonce::all();
-
-    //     if ($request->has('search')) {
-    //         $searchTerm = $request->input('search');
-    //         $query->where('titre', 'like', '%' . $searchTerm . '%');
-    //     }
-    //     $annonces = $query->orderBy('created_at', 'desc')->paginate(9);
-    //     return view('home', compact('annonces','categories'));
-    // }
+  
 
     public function showDetails($id)
     {
@@ -132,7 +103,7 @@ class AnnonceController extends Controller
                 'description' => ['required', 'string'],
                 'location' => ['required', 'string', 'max:255'],
                 'price' => ['required', 'numeric'], 
-                'image' => ['required', 'file'], // Change 'image' rule to 'file'
+                'image' => ['required', 'file'], 
             ]);
             $user = auth()->user();
 
@@ -165,30 +136,23 @@ class AnnonceController extends Controller
 
     }
 
-    // public function viewlandlord()
-    // {
-    //     $user = Auth::id();
-    //     $categories = Category::all();
-    //     $annonces = Annonce::where('user_id', $user)
-    //         ->orderby('created_at', 'desc')
-    //         ->paginate(9);
-    //     // dd($evenements);
-    //     return view('landlord.dashboard', compact('annonces'), compact('categories'));
-    // }
+   
   
     public function viewlandlord(Request $request)
 {
     $user = Auth::id();
     $categories = Category::all();
+    $AnnounceCount = Annonce::where('user_id', $user)->count();
     $search = $request->input('search');
     $annoncesQuery = Annonce::where('user_id', $user)->orderby('created_at', 'desc');
     if ($search) {
         $annoncesQuery->where('title', 'like', "%$search%");
     }
-    $annonces = $annoncesQuery->paginate(9);
+    $annonces = $annoncesQuery->paginate(20);
 
-    return view('landlord.dashboard', compact('annonces', 'categories'));
+    return view('landlord.dashboard', compact('annonces', 'categories', 'AnnounceCount'));
 }
+
 
 
 public function EditAnnoce($id) {
