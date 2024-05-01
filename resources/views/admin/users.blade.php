@@ -45,7 +45,7 @@
           @csrf
           @method('PUT')
 
-          <button type="submit" class="mt-1 text-xs leading-5 text-red-500">Banned</button>
+          <button type="submit" class="mt-1 text-xs leading-5 text-red-500">unban</button>
       </form>
       @endif
     </div>
@@ -70,7 +70,7 @@
               @csrf
               @method('PUT')
     
-              <button type="submit" class="mt-1 text-xs leading-5 text-green-500">UnBan</button>
+              <button type="submit" class="mt-1 text-xs leading-5 text-green-500">Ban</button>
           </form>
           @endif
 

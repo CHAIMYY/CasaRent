@@ -12,29 +12,81 @@ class AnnonceController extends Controller
    
 
     public function viewClient(Request $request)
-    {
-        $categories = Category::all();
-    
-      
-        $search = $request->input('search');
-        $categoryId = $request->input('category_id');
-    
-      
-        $annoncesQuery = Annonce::orderby('created_at', 'desc');
-        if ($search) {
-            $annoncesQuery->where('title', 'like', "%$search%");
-        }
-        if ($categoryId) {
-            $annoncesQuery->where('categories_id', $categoryId);
-        }
-        if ($request->ajax()) {
-            return view('home', compact('annonces'));
-        }
-       
-        $annonces = $annoncesQuery->get();
-    
-        return view('home', compact('annonces', 'categories'));
+{
+    $categories = Category::all();
+
+    // Get search inputs
+    $search = $request->input('search');
+    $categoryId = $request->input('category_id');
+    $location = $request->input('location');
+
+    // Start building query
+    $annoncesQuery = Annonce::query()->orderBy('created_at', 'desc');
+
+    // Apply search filters
+    // if ($search) {
+    //     $annoncesQuery->where('title', 'like', "%$search%");
+    // }
+    // if ($location) {
+    //     $annoncesQuery->where('location', 'like', "%$location%");
+    // }
+    // if ($categoryId) {
+    //     $annoncesQuery->where('categories_id', $categoryId);
+    // }
+
+    if ($search && $location) {
+        $annoncesQuery->where(function($query) use ($search, $location) {
+            $query->where('title', 'like', "%$search%")
+                  ->orWhere('location', 'like', "%$location%");
+        });
+    } elseif ($search) {
+        $annoncesQuery->where('title', 'like', "%$search%");
+    } elseif ($location) {
+        $annoncesQuery->where('location', 'like', "%$location%");
     }
+
+    // Apply category filter
+    if ($categoryId) {
+        $annoncesQuery->where('categories_id', $categoryId);
+    }
+
+    
+    // if ($request->ajax()) {
+    //     $annonces = $annoncesQuery->get();
+    //     return view('home', compact('annonces'));
+    // }
+
+    // Get final result
+    $annonces = $annoncesQuery->get();
+
+    return view('home', compact('annonces', 'categories'));
+}
+
+
+    // public function viewClient(Request $request)
+    // {
+    //     $categories = Category::all();
+    
+      
+    //     $search = $request->input('search');
+    //     $categoryId = $request->input('category_id');
+    
+      
+    //     $annoncesQuery = Annonce::orderby('created_at', 'desc');
+    //     if ($search) {
+    //         $annoncesQuery->where('title', 'like', "%$search%");
+    //     }
+    //     if ($categoryId) {
+    //         $annoncesQuery->where('categories_id', $categoryId);
+    //     }
+    //     if ($request->ajax()) {
+    //         return view('home', compact('annonces'));
+    //     }
+       
+    //     $annonces = $annoncesQuery->get();
+    
+    //     return view('home', compact('annonces', 'categories'));
+    // }
     
 
 

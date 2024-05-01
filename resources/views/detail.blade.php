@@ -308,7 +308,7 @@
             </div>
           </div>
   
-          <div class="mt-10">
+          {{-- <div class="mt-10">
             <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
   
             <div class="mt-4">
@@ -319,7 +319,7 @@
                 <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span></li>
               </ul>
             </div>
-          </div>
+          </div> --}}
   
           <div class="mt-10">
             <h2 class="text-sm font-medium text-gray-900">Details</h2>

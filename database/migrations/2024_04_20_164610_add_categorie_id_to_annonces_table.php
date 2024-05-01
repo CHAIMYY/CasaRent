@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('annonces', function (Blueprint $table) {
-            $table->unsignedBigInteger('categorie_id');
+            //$table->unsignedBigInteger('categorie_id');
             // Add foreign key constraint if 'categories' table exists
-            $table->foreign('categorie_id')->references('id')->on('categories');
+            //$table->foreign('categorie_id')->references('id')->on('categories');
         });
     }
 

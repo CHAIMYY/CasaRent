@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Conversation;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -59,4 +60,13 @@ class User extends Authenticatable
     return $this->belongsToMany(Annonce::class);
 }
 
+public function messages()
+{
+    return $this->hasMany(Message::class);
+}
+
+public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class);
+    }
 }

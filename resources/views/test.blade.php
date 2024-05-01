@@ -3,7 +3,7 @@
 <!-- component -->
 {{-- dashboard example --}}
 
-<aside class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
+{{-- <aside class="ml-[-100%] fixed z-10 top-0 pb-3 px-6 w-full flex flex-col justify-between h-screen border-r bg-white transition duration-300 md:w-4/12 lg:ml-0 lg:w-[25%] xl:w-[20%] 2xl:w-[15%]">
     <div>
         <div class="-mx-6 px-6 py-4">
             <a href="#" title="home">
@@ -384,14 +384,14 @@
         </div>
     </div>
 </div>
-
+ --}}
 
 
 {{-- //////////////////////chat front example  --}}
 
 
 <!-- component -->
-<div>
+{{-- <div>
     <div class="w-full h-32" style="background-color: #449388"></div>
 
     <div class="container mx-auto" style="margin-top: -128px;">
@@ -705,4 +705,67 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+</head>
+<body>
+    <div id="chat">
+        <select id="conversation">
+            @foreach ($conversations as $conversation)
+                <option value="{{ $conversation->id }}">{{ $conversation->name }}</option>
+            @endforeach
+        </select>
+        <div id="messages">
+            <!-- Messages will be displayed here -->
+        </div>
+        <input type="text" id="message" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        function getMessages() {
+            var conversationId = $('#conversation').val();
+            $.ajax({
+                url: '/chat/conversation/' + conversationId,
+                method: 'GET',
+                success: function(response) {
+                    $('#messages').empty();
+                    response.forEach(function(message) {
+                        $('#messages').append('<p><strong>' + message.user.name + '</strong>: ' + message.content + '</p>');
+                    });
+                }
+            });
+        }
+
+        function sendMessage() {
+            var message = $('#message').val();
+            var conversationId = $('#conversation').val();
+            $.ajax({
+                url: '/chat/send',
+                method: 'POST',
+                data: {
+                    conversation_id: conversationId,
+                    message: message
+                },
+                success: function(response) {
+                    $('#message').val('');
+                    getMessages();
+                }
+            });
+        }
+
+        $(document).ready(function() {
+            getMessages();
+            setInterval(getMessages, 5000); // Update messages every 5 seconds
+        });
+    </script>
+</body>
+</html>
+
+
+

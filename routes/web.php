@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AnnonceController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +48,9 @@ route::get('/Annonces');
 
 //////////////////////////////////////backend////////////////////////////////
 
+// Route::get('/chat', [ChatController::class, 'index']);
+// Route::get('/chat/conversation/{conversationId}', [ChatController::class, 'getConversation']);
+// Route::post('/chat/send', [ChatController::class, 'sendMessage']);
 
 
 
@@ -56,18 +60,25 @@ Route::get('/register',  [AuthController::class, 'register'])->name('register');
 Route::post('/register',  [AuthController::class, 'registerPost'])->name('register.post');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+Route::get('/forget-password', [AuthController::class, 'forgot'])->name('forgot');
+
 
 // Route::post('/dashboard/search', [AnnonceController::class, 'search'])->name('search');
 // Route::get('/annonces', [AnnonceController::class, 'show'])->name('show.annonce');
-
-
-
-Route::middleware('auth', 'banned')->group(function () {
-
     Route::get('/home', [AnnonceController::class, 'viewClient'])->name('home');
     Route::post('/annonce/search', [AnnonceController::class, 'viewClient'])->name('events.search');
     Route::get('/details/{id}', [AnnonceController::class, 'showDetails'])->name('details');
 
+
+
+    Route::post('/Forget-password', [AuthController::class, 'ForgetPassword'])->name('forget');
+
+    Route::get('/reset-password/{token}' , [AuthController::class, 'resetPassword'])->name('reset.password');
+    Route::post('/reset-password' , [AuthController::class, 'ResetPasswordPost'])->name('reset.password.post');
+
+Route::middleware('auth', 'banned')->group(function () {
+
+  
 
     Route::middleware('advertiser')->group(function () {
         Route::get('/dashboard', [AnnonceController::class, 'viewlandlord'])->name('landlord.dashboard');
