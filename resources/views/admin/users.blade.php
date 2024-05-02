@@ -31,7 +31,7 @@
 <ul role="list" class="divide-y divide-gray-100 ml-80  mr-20 bg-white px-5 rounded-lg shadow-xl">
     <li class="flex justify-between gap-x-6 py-5">
       <div class="flex min-w-0 gap-x-4">
-        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{$user->photo}}" alt="">
+        <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="/images/{{$user->photo}}" alt="">
         <div class="min-w-0 flex-auto">
           <p class="text-sm font-semibold leading-6 text-gray-900">{{$user->name}}</p>
           <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$user->email}}</p>
@@ -56,7 +56,7 @@
       <ul role="list" class="divide-y divide-gray-100 ml-80  mr-20 bg-white px-5 rounded-lg shadow-xl">
         <li class="flex justify-between gap-x-6 py-5">
           <div class="flex min-w-0 gap-x-4">
-            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{$user->photo}}" alt="">
+            <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="/images/{{$user->photo}}" alt="">
             <div class="min-w-0 flex-auto">
               <p class="text-sm font-semibold leading-6 text-gray-900">{{$user->name}}</p>
               <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{$user->email}}</p>
