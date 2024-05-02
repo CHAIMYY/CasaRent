@@ -38,9 +38,9 @@
        
         </div>
         {{-- {{route('home')}} --}} 
-        <a href="{{route('home')}}" class="text-sm font-semibold leading-6 text-gray-900">home</a>
+        {{-- <a href="{{route('home')}}" class="text-sm font-semibold leading-6 text-gray-900">home</a> --}}
         <a href="{{route('landing')}}" class="text-sm font-semibold leading-6 text-gray-900">about us</a>
-         <a href="{{route('home')}}" class="text-sm font-semibold leading-6 text-gray-900">company</a>
+         <a href="{{route('home')}}" class="text-sm font-semibold leading-6 text-gray-900">home</a>
       </div>
       
       

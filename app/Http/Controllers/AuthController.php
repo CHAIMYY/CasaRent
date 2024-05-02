@@ -83,8 +83,9 @@ class AuthController extends Controller
         // die('oussama');
         $request->validate([
             'name'=>'required',
-            'email'=>'required|email|unique:users',
-            'password'=>'required',
+            'email'=>['required', 'regex:/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/'],
+            'password' => ['required', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,}$/'],
+
             'role'=>'required|in:user,advertiser', 
             
         ]);
@@ -200,26 +201,26 @@ class AuthController extends Controller
         }
 
       
-public function ForgetPassword(Request $request) {
-    // $request->validate([
-    //     'email' => "required|email|exists:users,email",
-    // ]);
+// public function ForgetPassword(Request $request) {
+//     // $request->validate([
+//     //     'email' => "required|email|exists:users,email",
+//     // ]);
 
-    $token = Str::random(64);
+//     $token = Str::random(64);
 
-    // Store the token in the database
-    PasswordResetToken::updateOrCreate(
-        ['email' => $request->email],
-        ['token' => $token, 'created_at' => now()]
-    );
+//     // Store the token in the database
+//     PasswordResetToken::updateOrCreate(
+//         ['email' => $request->email],
+//         ['token' => $token, 'created_at' => now()]
+//     );
 
-    // Send the password reset email
-    Mail::send("emails.ForgetPasswordEmail", ['token' => $token], function ($message) use ($request) {
-        $message->to($request->email)
-                ->subject('Reset Your Password');
-    });
+//     // Send the password reset email
+//     Mail::send("emails.ForgetPasswordEmail", ['token' => $token], function ($message) use ($request) {
+//         $message->to($request->email)
+//                 ->subject('Reset Your Password');
+//     });
 
-    return redirect()->to(route('forget.password'))->with("success", "Password reset email sent");
-}
+//     return redirect()->to(route('forget.password'))->with("success", "Password reset email sent");
+// }
     
 }
