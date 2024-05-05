@@ -66,7 +66,7 @@ Route::get('/forget-password', [AuthController::class, 'forgot'])->name('forgot'
 // Route::post('/dashboard/search', [AnnonceController::class, 'search'])->name('search');
 // Route::get('/annonces', [AnnonceController::class, 'show'])->name('show.annonce');
     Route::get('/home', [AnnonceController::class, 'viewClient'])->name('home');
-    Route::post('/annonce/search', [AnnonceController::class, 'viewClient'])->name('events.search');
+    Route::post('/annonce/search', [AnnonceController::class, 'viewClient'])->name('annonce.search');
     Route::get('/details/{id}', [AnnonceController::class, 'showDetails'])->name('details');
 
 
