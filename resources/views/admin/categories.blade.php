@@ -10,28 +10,14 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
 
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-    <title>Document</title>
+    <title>categories</title>
 </head>
 
-<body>
+<body class="bg-gradient-to-r from-cyan-100 to-blue-200">
     @include('partials.sidebar')
 
-     <div class="p-4 xl:ml-80">
-        <nav class="block w-full max-w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1">
-          <div class="flex flex-col-reverse justify-between gap-6 md:flex-row md:items-center">
-            <div class="flex items-center">
-              <div class="mr-auto md:mr-4 md:w-56">
-              </div>
-                     <div class="p-2 md:block text-left">
-                      <h2 class="text-sm font-semibold text-gray-800"></h2>
-                      <p class="text-xs text-gray-500"></p>
-                  </div>
-              </button>
-              </a>
-            </div>
-          </div>
-        </nav> 
-
+     <div class="p-4 xl:ml-80 mt-20">
+     
 
   <main >
    

@@ -7,8 +7,21 @@
   
 
    
-      <dl class="grid grid-cols-2 gap-x-8 gap-y-16 lg:grid-cols-3 md:grid-cols-1 ml-72 mt-32 mb-20">
+      {{-- <dl class="grid grid-cols-2 gap-x-8 gap-y-16 lg:grid-cols-3 md:grid-cols-1 ml-72 mt-32 mb-20">
        
+        <div class="container mx-auto">
+          <div class="w-72 bg-white max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
+            <div class="h-20 bg-purple-400 flex items-center justify-between">
+              <p class="mr-0 text-white text-lg pl-5">Advertisements</p>
+            </div>
+            <div class="flex justify-between pt-6 px-5 mb-2 text-sm text-gray-600">
+              <p>TOTAL</p>
+            </div>
+            <p class="py-4 text-3xl ml-5">{{$totalAnnonce}}</p>
+            <!-- <hr > -->
+          </div>
+        </div>
+
         <div class="container mx-auto">
           <div class="w-72 bg-white max-w-xs mx-auto rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition duration-500 transform hover:scale-100 cursor-pointer">
             <div class="h-20 bg-purple-400 flex items-center justify-between">
@@ -35,11 +48,13 @@
           </div>
         </div>
     
-      </dl>
+      </dl> --}}
 
+      <div class=" text-blue-700 ml-72 font-bold text-2xl mt-20">
+        <h1 class="uppercase"> Advertisements</h1>
+      </div>
 
-
-      <form id="search-form" class="max-w-md mx-auto shadow-xl" action="{{route('viewAll')}}" method="GET"> 
+      <form id="search-form" class="max-w-md mx-auto shadow-xl mt-20 mb-20" action="{{route('viewAll')}}" method="GET"> 
         @csrf
         <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
         <div class="relative">
@@ -89,33 +104,6 @@
  
 
 
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('search-form');
-      
-      form.addEventListener('submit', function (event) {
-          event.preventDefault(); 
-          
-          const formData = new FormData(form); 
-          
-         
-          fetch(form.action + '?' + new URLSearchParams(formData), {
-              method: 'GET',
-              headers: {
-                  'X-Requested-With': 'XMLHttpRequest'
-              },
-          })
-          .then(response => response.text())
-          .then(data => {
-              
-              document.getElementById('annonces-container').innerHTML = data;
-          })
-          .catch(error => {
-              console.error('Error:', error);
-          });
-      });
-  });
-</script>
 
 
 </body>

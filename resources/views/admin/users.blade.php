@@ -6,6 +6,10 @@
     <div class="relative overflow-hidden min-h-screen ">
         <img src="{{ asset('images/pexels-anni-roenkae-2156881.jpg') }}" alt="" class="absolute inset-0 -z-10 h-screen  w-full object-cover object-right bg-cover  md:object-center">
          --}}
+
+         <div class=" text-blue-700 ml-72 font-bold text-2xl mt-20">
+          <h1 class="uppercase"> Users </h1>
+        </div>
 <div class="mt-28 ml-36">
 
 
