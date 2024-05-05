@@ -10,7 +10,9 @@ class CategoryController extends Controller
 {
     public function view(){
         $categories = Category::all();
-        return view('admin.categories', compact('categories'));
+        return view('/admin/categories', [
+            'categories' => $categories,
+        ]);
     }
 
     public function create(Request $request){
